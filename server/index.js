@@ -3,9 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.get('/', (request, response) => {
-  response.send('ROOT');
-});
+app.use(express.static(__dirname + '/../client/public'));
 
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
