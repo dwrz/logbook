@@ -14,16 +14,30 @@
 + MongoDB
 
 * Database Schema
+Working:
 |-------------+-----------+--------+-------------|
 | id (unique) | timestamp | event  | description |
 |-------------+-----------+--------+-------------|
-| number      | string    | string | string      |
+| objectId    | string    | string | string      |
 |-------------+-----------+--------+-------------|
+
+Final:
+|-------------+--------------------+-----------+--------+-------------|
+| id (unique) | user               | timestamp | event  | description |
+|-------------+--------------------+-----------+--------+-------------|
+| objectId    | string / reference | string    | string | string      |
+|-------------+--------------------+-----------+--------+-------------|
+
+|-------------+----------+-----------|
+| id (unique) | username | entries   |
+|-------------+----------+-----------|
+| objectId    | string   | reference |
+|-------------+----------+-----------|
+
 
 * TODOS
 
 ** Backend
-
 + [ ] Should serve static files.
 + [ ] Should receive entry from client.
 + [ ] Should return entries to client.
