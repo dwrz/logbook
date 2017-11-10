@@ -11,11 +11,16 @@ const entrySchema = mongoose.Schema({
 let Entry = mongoose.model('Entry', entrySchema);
 
 function save(entry) {
+  console.log('SAVING ENTRY: ');
+  console.log(entry);
+  
   let newEntry = new Entry(entry);
   newEntry.save(function (error, success) {
     if (error) {
       console.error('ERROR: FAILED TO SAVE TO DB');
       console.error(error);
+    } else {
+      console.log('ENTRY SAVED OK');
     }
   });
 }

@@ -10,13 +10,18 @@ app.get('/', (request, response) => {
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
   console.log('RECEIVED A GET');
-  response.send('RECEIVED YOUR GET');
+  database.load((entries) => {
+    console.log('LOADED ENTRIES:');
+    console.log(entries);
+    console.log('RESPONDING WITH ENTRIES');
+    response.json(entries);
+  });
 });
 
 app.post('/api/log/entry', (request, response) => {
   console.log('RECEIVED A POST');
   // STORE ENTRY IN DATABASE
-  // database.save
+  database.save({timestamp: new Date(), event: 'default', description:'This is a test log.'});
   
   response.send('RECEIVED YOUR POST');
 });
