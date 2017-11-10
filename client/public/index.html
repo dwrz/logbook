@@ -3,13 +3,21 @@
   <head>
     <title>logbook</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../../node_modules/react/cjs/react.development.js"></script>
-    <script src="../../node_modules/react-dom/cjs/react-dom.development.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+      integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+      crossorigin="anonymous">
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   </head>
-  <body>
-    <p>Hello, World.</p>
-    <script>src="index.js"</script>
+  <body class="container">
+    <h1 class="jumbotron text-center display-3"><span class="text-danger">LOG</span><span class="text-primary">BOOK</span></h1>
+    <div id="app"></div>
+    <script>src="../compiled/public/index.js"</script>
   </body>
 </html>
