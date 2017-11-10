@@ -1,0 +1,35 @@
+{
+  "name": "logbook",
+  "version": "0.0.1",
+  "description": "A customizable, online logbook for adaptive, efficient, fast logging.",
+  "main": "server/index.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "express": "^4.16.2",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.13.1",
+    "nodemon": "^1.12.1",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwrz/logbook.git"
+  },
+  "keywords": [
+    "logbook",
+    "log"
+  ],
+  "author": "David Wen Riccardi-Zhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dwrz/logbook/issues"
+  },
+  "homepage": "https://github.com/dwrz/logbook#readme"
+}
