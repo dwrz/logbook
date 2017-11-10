@@ -1,9 +1,11 @@
 * Logbook
 
-* Technology
+* Technology Stack
+
 ** Frontend
 + Bootstrap
 + React
+
 ** Backend
 + Node.js
 + Express
@@ -17,3 +19,22 @@
 |-------------+-----------+--------+-------------|
 | number      | string    | string | string      |
 |-------------+-----------+--------+-------------|
+
+* TODOS
+
+** Backend
+
++ [ ] Should serve static files.
++ [ ] Should receive entry from client.
++ [ ] Should return entries to client.
+
+** Database
++ [ ] Should store entries from server.
++ [ ] Should return entries to server.
+
+** Frontend
++ [ ] Should allow user to compose an entry.
++ [ ] Should allow user to submit an entry.
++ [ ] Should fetch current day's entry from users.
+
+
