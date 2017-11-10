@@ -1,9 +1,19 @@
 * Logbook
 
-* Database Schema
-|----+-----------+-------|
-| id | timestamp | entry |
-|----+-----------+-------|
-|    |           |       |
-|----+-----------+-------|
+* Technology
+** Frontend
++ Bootstrap
++ React
+** Backend
++ Node.js
++ Express
 
+*** Database
++ MongoDB
+
+* Database Schema
+|-------------+-----------+--------+-------------|
+| id (unique) | timestamp | event  | description |
+|-------------+-----------+--------+-------------|
+| number      | string    | string | string      |
+|-------------+-----------+--------+-------------|
