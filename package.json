@@ -18,7 +18,7 @@
     "nodemon": "^1.12.1"
   },
   "scripts": {
-    "build": "babel ./client --watch --out-dir ./client/compiled --presets=es2015,react --ignore=node_modules,compiled --source-maps inline",
+    "build": "babel ./client/src --out-dir ./client/public/js --presets=es2015,react --ignore=public --source-maps inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
