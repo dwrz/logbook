@@ -6,10 +6,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.16.2",
-    "jquery": "^3.2.1",
-    "mongoose": "^4.13.1",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0"
+    "mongoose": "^4.13.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -19,6 +16,7 @@
   },
   "scripts": {
     "build": "babel ./client/src --out-dir ./client/public/js --presets=es2015,react --ignore=public --source-maps inline",
+    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
