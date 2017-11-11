@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "babel ./client/src --out-dir ./client/public/js --presets=es2015,react --ignore=public --source-maps inline",
+    "postinstall": "babel ./client/src --out-dir ./client/public/js --presets=es2015,react --ignore=public --source-maps inline",
     "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
