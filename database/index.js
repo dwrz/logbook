@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const URL = 'mongodb://heroku_8390sk5v:l31t8pn87680nhhhlr7dc2ofa3@ds255265.mlab.com:55265/heroku_8390sk5v';
+const URL = 'mongodb://localhost/log/';
 const moment = require('moment');
 let today = moment().startOf('day');
 let tomorrow = moment(today).add(1, 'days');
