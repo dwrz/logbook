@@ -4,6 +4,7 @@
 
 + [ ] Add Users and Authentication
 + [ ] Fix CORS HTTP/HTTPS ISSUE
++ [ ] Address timezone issues.
 
 ** Basic Backend :ARCHIVE:
 + [X] Should serve static files.
@@ -18,8 +19,6 @@
 + [X] Should allow user to compose an entry.
 + [X] Should allow user to submit an entry.
 + [X] Should fetch current day's entry for users.
-
-
 
 
 * Database Schema
@@ -46,11 +45,11 @@
 |-------------+--------+-----------|
 
 *** Users
-|-------------+----------+---------------------+---------------------|
-| id (unique) | username | events              | entries             |
-|-------------+----------+---------------------+---------------------|
-| objectId    | string   | array of references | array of references |
-|-------------+----------+---------------------+---------------------|
+|-------------+----------+--------+----------+---------------------+---------------------|
+| id (unique) | username | email  | password | events              | entries             |
+|-------------+----------+--------+----------+---------------------+---------------------|
+| objectId    | string   | string | string   | array of references | array of references |
+|-------------+----------+--------+----------+---------------------+---------------------|
 
 *** Sessions
 |-------------+-----------+--------------|
