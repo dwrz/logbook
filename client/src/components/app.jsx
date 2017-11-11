@@ -1,12 +1,15 @@
 const serverURL = 'http://127.0.0.1:3000';
 const GET = '/api/log/entries/current/day';
 const POST = '/api/log/entry';
+const LOGIN = '/login';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      entries: []
+      entries: [],
+      loggedIn: false,
+      username: ''
     };
   }
 
@@ -20,6 +23,18 @@ class App extends React.Component {
     });
   }
 
+  login (username) {
+    let user = {
+      username: username
+    };
+    $.post(serverURL + POST, user, (response) => {
+      this.setState({
+        loggedIn: true,
+        username: username
+      });
+    });
+  }
+
   submit (entry) {
     $.post(serverURL + POST, entry, (response) => {
       console.log(response);
@@ -30,11 +45,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div id='login'>
+          {!this.state.loggedIn && <Login login={this.login.bind(this)}/>}
+        </div>
         <div id='compose'>
-          <Compose submit={this.submit.bind(this)}/>
+          {this.state.loggedIn && <Compose submit={this.submit.bind(this)}/>}
         </div>
         <div id='logview'>
-          <LogView entries={this.state.entries}/>
+          {this.state.loggedIn && <LogView entries={this.state.entries}/>}
         </div>
       </div>
     );

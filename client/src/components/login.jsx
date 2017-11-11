@@ -16,12 +16,7 @@ class Login extends React.Component {
   }
 
   submit () {
-    let user = {
-      username: this.state.username
-    };
-    $.post(serverURL + POST, user, (response) => {
-      console.log(response);
-    });
+    this.props.login(this.state.username);
   }
 
   render() {
