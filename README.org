@@ -1,6 +1,8 @@
 * Logbook
 A customizable, online logbook for adaptive, efficient, fast logging.
 
+https://dry-caverns-21132.herokuapp.com/
+
 * MVP
 Unauthenticated visitors can make a log entry.
 
