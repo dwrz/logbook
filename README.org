@@ -1,28 +1,20 @@
 * Logbook
 A customizable, online logbook for adaptive, efficient, fast logging.
-
 https://dry-caverns-21132.herokuapp.com/
 
 * MVP
 + [X] Unauthenticated visitors can make a log entry.
-
 + [X] Log entries have an event type and description.
-
 + [X] Log entries are stored in MongoDB.
-
-+ [ ] Only entries from the current day are displayed.
++ [X] Only entries from the current day are displayed.
 
 * User Stories
-User can log in, then quickly and easily log events with a description.
-
-User can log with current time or a user-defined time.
-
-User can setup custom event types and templates, to make logging faster.
-
-User can retrieve logs from custom spans of time.
-
-User can download log data in a variety of formats (text, json, csv).
-
-User can share logs.
-
-User can log via text and email.
++ [ ] User can log in, then quickly and easily log events with a description.
++ [ ] User can log with current time or a user-defined time.
++ [ ] User can setup custom event types and templates, to make logging faster.
++ [ ] User can retrieve logs from custom spans of time.
++ [ ] User can download log data in a variety of formats (text, json, csv).
++ [ ] User can share logs.
++ [ ] User can log via text and email.
++ [ ] User can log events via espruino.
++ [ ] User can view data visualizations of log events.
