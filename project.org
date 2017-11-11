@@ -23,12 +23,27 @@
 
 
 * Database Schema
-** Working:
+** Production:
 |-------------+-----------+--------+-------------|
 | id (unique) | timestamp | event  | description |
 |-------------+-----------+--------+-------------|
 | objectId    | string    | string | string      |
 |-------------+-----------+--------+-------------|
+
+** Development:
+*** Entries
+|-------------+-----------+-----------+--------+-------------|
+| id (unique) | user      | timestamp | event  | description |
+|-------------+-----------+-----------+--------+-------------|
+| objectId    | reference | string    | string | string      |
+|-------------+-----------+-----------+--------+-------------|
+
+*** User
+|-------------+--------+---------------------|
+| id (unique) | user   | entries             |
+|-------------+--------+---------------------|
+| objectId    | string | array of references |
+|-------------+--------+---------------------|
 
 ** Final:
 *** Entries
