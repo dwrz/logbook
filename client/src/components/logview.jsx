@@ -6,7 +6,14 @@ class LogView extends React.Component {
   render() {
     return (
       <div>
-        <p>LogView here.</p>
+        <h3 className="text-center">ENTRIES</h3>
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr className="table-success"><th>Date</th><th>Event</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     );
   }
