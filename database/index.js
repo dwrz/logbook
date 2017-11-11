@@ -25,15 +25,21 @@ function save(entry) {
   });
 }
 
-function load(callback) {
-  Entry.find((error, entries) => {
-    if (error) {
-      console.error('ERROR: FAILED TO LOAD FROM DB');
-      console.error(error);
-    } else {
-      callback(entries);
-    }
-  });
+function load(type, callback) {
+  
+
+  if (type === 0) { // Entries for current day.
+    Entry.find()
+      .sort({timestamp: 'desc'})
+      .exec((error, entries) => {
+        if (error) {
+          console.error('ERROR: FAILED TO LOAD FROM DB');
+          console.error(error);
+        } else {
+          callback(entries);
+        }
+      });
+  }
 }
 
 exports.save = save;
