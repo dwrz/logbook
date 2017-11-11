@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const URL = 'mongodb://localhost/log/';
 const moment = require('moment');
 let today = moment().startOf('day');
@@ -7,14 +8,20 @@ let tomorrow = moment(today).add(1, 'days');
 mongoose.connect(URL);
 
 const entrySchema = mongoose.Schema({
-  timestamp: Date,
+  description: String,
   event: String,
-  description: String
+  timestamp: Date,
+  user: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
-
 let Entry = mongoose.model('Entry', entrySchema);
 
-function save(entry) {
+const userSchema = mongoose.Schema({
+  name: String,
+  entries: [{type: Schema.Types.ObjectId, ref: 'Entry'}]
+});
+let User = mongoose.model('User', userSchema);
+
+function saveEntry(entry) {
   console.log('SAVING ENTRY: ');
   console.log(entry);
   
@@ -24,12 +31,13 @@ function save(entry) {
       console.error('ERROR: FAILED TO SAVE TO DB');
       console.error(error);
     } else {
+      // ADD ENTRY TO USERS ENTRY
       console.log('ENTRY SAVED OK');
     }
   });
 }
 
-function load(type, callback) {
+function loadEntries(type, callback) {
   if (type === 'cd') { // Entries for current day.
     Entry.find({timestamp: {
       $gte: today.toDate(),
@@ -47,5 +55,5 @@ function load(type, callback) {
   }
 }
 
-exports.save = save;
-exports.load = load;
+exports.saveEntry = saveEntry;
+exports.loadEntries = loadEntries;
