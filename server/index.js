@@ -1,8 +1,15 @@
 const database = require('../database/index.js');
 const express = require('express');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const app = express();
 const PORT = 3000;
+
+app.use(session({
+  secret: 'mJ?LY0.^te]BZB0W7U#/R^n{+',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,11 +20,17 @@ app.get('/login', (request, response) => {
 });
 
 app.post('/login', (request, response) => {
-  let username = request.body.username;
   console.log('RECEIVED USERNAME');
+  database.saveUser(request.body);
   
   // Load and compare with DB.
   // Redirect to app or to login.
+});
+
+app.get('/logout', function(request, response) {
+  request.session.destroy(function() {
+    response.redirect('/login');
+  });
 });
 
 /*
