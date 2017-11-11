@@ -9,16 +9,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/login', (request, response) => {
-  // Return login page.
+  response.redirect('login.html');
 });
 
 app.post('/login', (request, response) => {
   let username = request.body.username;
-  let password = request.body.password;
+  console.log('RECEIVED USERNAME');
+  
   // Load and compare with DB.
   // Redirect to app or to login.
 });
 
+/*
 app.get('/signup', (request, response) => {
   // Return signup page.
 });
@@ -29,11 +31,12 @@ app.post('/signup', (request, response) => {
   // Save to DB.
   // Redirect to login or app.
 });
+*/
 
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
   console.log('RECEIVED A GET');
-  database.load('cd', (entries) => {
+  database.loadEntries('cd', (entries) => {
     console.log('LOADED ENTRIES:');
     console.log(entries);
     console.log('RESPONDING WITH ENTRIES');
@@ -43,7 +46,7 @@ app.get('/api/log/entries/current/day', (request, response) => {
 
 app.post('/api/log/entry', (request, response) => {
   console.log('RECEIVED A POST');
-  database.save(request.body);
+  database.saveEntry(request.body);
   response.send('RECEIVED YOUR POST');
 });
 
