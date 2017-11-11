@@ -17,19 +17,21 @@ class App extends React.Component {
   get() {
     $.get(serverURL + GET, (response) => {
       this.setState({entries: response});
-      console.log(this.state.entries);
     });
   }
 
   submit (entry) {
-
+    $.post(serverURL + POST, entry, (response) => {
+      console.log(response);
+      this.get();
+    });
   }
 
   render() {
     return (
       <div>
         <div id='compose'>
-          <Compose />
+          <Compose submit={this.submit.bind(this)}/>
         </div>
         <div id='logview'>
           <LogView entries={this.state.entries}/>
