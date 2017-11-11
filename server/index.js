@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
   console.log('RECEIVED A GET');
-  database.load(0, (entries) => {
+  database.load('cd', (entries) => {
     console.log('LOADED ENTRIES:');
     console.log(entries);
     console.log('RESPONDING WITH ENTRIES');

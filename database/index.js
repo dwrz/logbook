@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const URL = 'mongodb://localhost/log/';
+let today = moment().startOf('day');
+let tomorrow = moment(today).add(1, 'days');
+
 mongoose.connect(URL);
 
 const entrySchema = mongoose.Schema({
@@ -26,10 +30,11 @@ function save(entry) {
 }
 
 function load(type, callback) {
-  
-
-  if (type === 0) { // Entries for current day.
-    Entry.find()
+  if (type === 'cd') { // Entries for current day.
+    Entry.find({timestamp: {
+      $gte: today.toDate(),
+      $lt: tomorrow.toDate()
+    }})
       .sort({timestamp: 'desc'})
       .exec((error, entries) => {
         if (error) {
