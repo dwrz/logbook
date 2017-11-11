@@ -1,5 +1,64 @@
 * Logbook
 
+* TODOS
+
++ [ ] Add Users and Authentication
++ [ ] Fix CORS HTTP/HTTPS ISSUE
+
+** Basic Backend :ARCHIVE:
++ [X] Should serve static files.
++ [X] Should receive entry from client.
++ [X] Should return entries to client.
+
+** Basic Database :ARCHIVE:
++ [X] Should store entries from server.
++ [X] Should return entries to server.
+
+** Basic Frontend :ARCHIVE:
++ [X] Should allow user to compose an entry.
++ [X] Should allow user to submit an entry.
++ [X] Should fetch current day's entry for users.
+
+
+
+
+* Database Schema
+** Working:
+|-------------+-----------+--------+-------------|
+| id (unique) | timestamp | event  | description |
+|-------------+-----------+--------+-------------|
+| objectId    | string    | string | string      |
+|-------------+-----------+--------+-------------|
+
+** Final:
+*** Entries
+|-------------+-----------+-----------+-----------+-------------|
+| id (unique) | user      | timestamp | event     | description |
+|-------------+-----------+-----------+-----------+-------------|
+| objectId    | reference | string    | reference | string      |
+|-------------+-----------+-----------+-----------+-------------|
+
+*** Events
+|-------------+--------+-----------|
+| id (unique) | event  | username  |
+|-------------+--------+-----------|
+| objectId    | string | reference |
+|-------------+--------+-----------|
+
+*** Users
+|-------------+----------+---------------------+---------------------|
+| id (unique) | username | events              | entries             |
+|-------------+----------+---------------------+---------------------|
+| objectId    | string   | array of references | array of references |
+|-------------+----------+---------------------+---------------------|
+
+*** Sessions
+|-------------+-----------+--------------|
+| id (unique) | username  | session      |
+|-------------+-----------+--------------|
+| objectId    | reference | session hash |
+|-------------+-----------+--------------|
+
 * Technology Stack
 
 ** Frontend
@@ -12,43 +71,3 @@
 
 *** Database
 + MongoDB
-
-* Database Schema
-Working:
-|-------------+-----------+--------+-------------|
-| id (unique) | timestamp | event  | description |
-|-------------+-----------+--------+-------------|
-| objectId    | string    | string | string      |
-|-------------+-----------+--------+-------------|
-
-Final:
-|-------------+--------------------+-----------+--------+-------------|
-| id (unique) | user               | timestamp | event  | description |
-|-------------+--------------------+-----------+--------+-------------|
-| objectId    | string / reference | string    | string | string      |
-|-------------+--------------------+-----------+--------+-------------|
-
-|-------------+----------+---------------------|
-| id (unique) | username | entries             |
-|-------------+----------+---------------------|
-| objectId    | string   | array of references |
-|-------------+----------+---------------------|
-
-
-* TODOS
-
-** Backend
-+ [ ] Should serve static files.
-+ [ ] Should receive entry from client.
-+ [ ] Should return entries to client.
-
-** Database
-+ [ ] Should store entries from server.
-+ [ ] Should return entries to server.
-
-** Frontend
-+ [ ] Should allow user to compose an entry.
-+ [ ] Should allow user to submit an entry.
-+ [ ] Should fetch current day's entry from users.
-
-

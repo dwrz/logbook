@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const URL = 'mongodb://heroku_8390sk5v:l31t8pn87680nhhhlr7dc2ofa3@ds255265.mlab.com:55265/heroku_8390sk5v';
+const moment = require('moment');
+let today = moment().startOf('day');
+let tomorrow = moment(today).add(1, 'days');
+
 mongoose.connect(URL);
 
 const entrySchema = mongoose.Schema({
@@ -25,15 +29,22 @@ function save(entry) {
   });
 }
 
-function load(callback) {
-  Entry.find((error, entries) => {
-    if (error) {
-      console.error('ERROR: FAILED TO LOAD FROM DB');
-      console.error(error);
-    } else {
-      callback(entries);
-    }
-  });
+function load(type, callback) {
+  if (type === 'cd') { // Entries for current day.
+    Entry.find({timestamp: {
+      $gte: today.toDate(),
+      $lt: tomorrow.toDate()
+    }})
+      .sort({timestamp: 'desc'})
+      .exec((error, entries) => {
+        if (error) {
+          console.error('ERROR: FAILED TO LOAD FROM DB');
+          console.error(error);
+        } else {
+          callback(entries);
+        }
+      });
+  }
 }
 
 exports.save = save;
