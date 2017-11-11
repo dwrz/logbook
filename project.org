@@ -5,6 +5,7 @@
 + [ ] Add Users and Authentication
 + [ ] Fix CORS HTTP/HTTPS ISSUE
 + [ ] Address timezone issues.
++ [ ] Clear inputs on submission.
 
 ** Basic Backend :ARCHIVE:
 + [X] Should serve static files.
