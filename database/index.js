@@ -11,12 +11,12 @@ const entrySchema = mongoose.Schema({
   description: String,
   event: String,
   timestamp: Date,
-  user: [{type: Schema.Types.ObjectId, ref: 'User'}]
+  user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 let Entry = mongoose.model('Entry', entrySchema);
 
 const userSchema = mongoose.Schema({
-  username: String,
+  username: {type: String, unique: true},
   entries: [{type: Schema.Types.ObjectId, ref: 'Entry'}]
 });
 let User = mongoose.model('User', userSchema);
@@ -40,20 +40,21 @@ function saveUser(user) {
 function checkUser(callback) {
 }
 
-function saveEntry(entry) {
+function saveEntry(entry, user) {
   console.log('SAVING ENTRY: ');
-  console.log(entry);
-  
-  let newEntry = new Entry(entry);
-  newEntry.save(function (error, success) {
-    if (error) {
-      console.error('ERROR: FAILED TO SAVE TO DB');
-      console.error(error);
-    } else {
-      // ADD ENTRY TO USERS ENTRY
-      console.log('ENTRY SAVED OK');
-    }
-  });
+  let entryUser = User.findOne({username: user}).exec((error, userEntry) => {
+    entry.user = userEntry._id;
+
+    let newEntry = new Entry(entry);;
+    newEntry.save(function (error, dbEntry) {
+      if (error) {
+        console.error('ERROR: FAILED TO SAVE TO DB');
+        console.error(error);
+      } else {
+        console.log('ENTRY SAVED OK');
+      }
+    });
+  });  
 }
 
 function loadEntries(type, callback) {

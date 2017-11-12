@@ -54,7 +54,7 @@ app.get('/api/log/entries/current/day', (request, response) => {
 
 app.post('/api/log/entry', (request, response) => {
   console.log('RECEIVED A POST');
-  database.saveEntry(request.body);
+  database.saveEntry(request.body, request.session.user);
   response.send('RECEIVED YOUR POST');
 });
 
