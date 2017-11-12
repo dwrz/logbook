@@ -13,10 +13,6 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.get();
-  }
-
   get() {
     $.get(serverURL + GET, (response) => {
       this.setState({entries: response});
@@ -27,11 +23,15 @@ class App extends React.Component {
     let user = {
       username: username
     };
-    $.post(serverURL + POST, user, (response) => {
-      this.setState({
-        loggedIn: true,
-        username: username
-      });
+    $.post(serverURL + LOGIN, user, (response) => {
+      console.log(response);
+      if (response === 'true') {
+        this.setState({
+          loggedIn: true,
+          username: username
+        });
+        this.get();
+      }
     });
   }
 

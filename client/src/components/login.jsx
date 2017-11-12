@@ -23,7 +23,7 @@ class Login extends React.Component {
     return (
       <div className="input-group">
         <span className="input-group-addon">Username:</span>
-        <input value={this.state.username} onChange={this.onChange.bind(this)} type="text" className="form-control"/><button className="btn btn-success" onClick={this.submit.bind(this)}>Submit </button>
+        <input value={this.state.username} onChange={this.onChange.bind(this)} type="text" className="form-control"/><button className="btn btn-success" onClick={this.submit.bind(this)}>Submit</button>
       </div>
     );
   }

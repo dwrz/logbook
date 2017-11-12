@@ -22,14 +22,15 @@ app.get('/login', (request, response) => {
 app.post('/login', (request, response) => {
   console.log('RECEIVED USERNAME');
   database.saveUser(request.body);
-  
-  // Load and compare with DB.
-  // Redirect to app or to login.
+  request.session.regenerate(() => {
+    request.session.user = request.body.username;
+  });
+  response.send('true');
 });
 
 app.get('/logout', function(request, response) {
   request.session.destroy(function() {
-    response.redirect('/login');
+    response.redirect('/');
   });
 });
 
