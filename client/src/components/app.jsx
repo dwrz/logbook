@@ -1,4 +1,4 @@
-const serverURL = 'http://127.0.0.1:3000';
+const serverURL = 'https://dry-caverns-21132.herokuapp.com';
 const GET = '/api/log/entries/current/day';
 const POST = '/api/log/entry';
 const LOGIN = '/login';
