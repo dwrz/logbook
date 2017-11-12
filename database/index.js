@@ -43,7 +43,7 @@ function checkUser(callback) {
 function saveEntry(entry, user) {
   console.log('SAVING ENTRY: ');
   let entryUser = User.findOne({username: user}).exec((error, userEntry) => {
-    entry.user = userEntry._id;
+    entry.user = userEntry;
 
     let newEntry = new Entry(entry);;
     newEntry.save(function (error, dbEntry) {
@@ -51,6 +51,11 @@ function saveEntry(entry, user) {
         console.error('ERROR: FAILED TO SAVE TO DB');
         console.error(error);
       } else {
+        userEntry.entries.push(dbEntry);
+        userEntry.save((error, updatedUserEntry) => {
+          console.log('ADDED ENTRY TO USER');
+          console.log(updatedUserEntry);
+        });
         console.log('ENTRY SAVED OK');
       }
     });
