@@ -36,6 +36,7 @@ app.post('/login', (request, response) => {
 });
 
 app.get('/logout', function(request, response) {
+  console.log('LOGGING OUT');
   request.session.destroy(function() {
     response.redirect('/');
   });
