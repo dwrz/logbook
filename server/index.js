@@ -16,15 +16,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/login', (request, response) => {
-  response.redirect('login.html');
+  if (!isLoggedIn(request)) {
+    response.send('false');
+  } else {
+    response.send('true');
+  }
+  
+  function isLoggedIn(request) {
+    return request.session ? !!request.session.user : false;
+  }
+  
 });
 
 app.post('/login', (request, response) => {
   console.log('RECEIVED USERNAME');
   database.saveUser(request.body);
-  request.session.regenerate(() => {
-    request.session.user = request.body.username;
-  });
+  request.session.user = request.body.username;
   response.send('true');
 });
 
@@ -33,19 +40,6 @@ app.get('/logout', function(request, response) {
     response.redirect('/');
   });
 });
-
-/*
-app.get('/signup', (request, response) => {
-  // Return signup page.
-});
-
-app.post('/signup', (request, response) => {
-  let username = request.body.username;
-  let password = request.body.password;
-  // Save to DB.
-  // Redirect to login or app.
-});
-*/
 
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
@@ -67,3 +61,5 @@ app.post('/api/log/entry', (request, response) => {
 app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
 });
+
+// HELPERS

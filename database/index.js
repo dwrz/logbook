@@ -38,21 +38,6 @@ function saveUser(user) {
 }
 
 function checkUser(callback) {
-  if (type === 'cd') { // Entries for current day.
-    Entry.find({timestamp: {
-      $gte: today.toDate(),
-      $lt: tomorrow.toDate()
-    }})
-      .sort({timestamp: 'desc'})
-      .exec((error, entries) => {
-        if (error) {
-          console.error('ERROR: FAILED TO LOAD FROM DB');
-          console.error(error);
-        } else {
-          callback(entries);
-        }
-      });
-  }
 }
 
 function saveEntry(entry) {

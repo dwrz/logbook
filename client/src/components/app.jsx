@@ -13,6 +13,17 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    $.get(serverURL + LOGIN, (response) => {
+      console.log(response);
+      if (response === 'true') {
+        this.setState({
+          loggedIn: true
+        });
+      }
+    });
+  }
+
   get() {
     $.get(serverURL + GET, (response) => {
       this.setState({entries: response});
