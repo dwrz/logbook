@@ -44,7 +44,7 @@ app.get('/logout', function(request, response) {
 app.get('/api/log/entries/current/day', (request, response) => {
   // RETURN JSON -- ARRAY OF OBJECTS
   console.log('RECEIVED A GET');
-  database.loadEntries('cd', (entries) => {
+  database.loadEntries(request.session.user, 'cd', (entries) => {
     console.log('LOADED ENTRIES:');
     console.log(entries);
     console.log('RESPONDING WITH ENTRIES');

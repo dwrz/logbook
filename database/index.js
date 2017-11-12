@@ -45,7 +45,7 @@ function saveEntry(entry, user) {
   let entryUser = User.findOne({username: user}).exec((error, userEntry) => {
     entry.user = userEntry;
 
-    let newEntry = new Entry(entry);;
+    let newEntry = new Entry(entry);
     newEntry.save(function (error, dbEntry) {
       if (error) {
         console.error('ERROR: FAILED TO SAVE TO DB');
@@ -54,7 +54,6 @@ function saveEntry(entry, user) {
         userEntry.entries.push(dbEntry);
         userEntry.save((error, updatedUserEntry) => {
           console.log('ADDED ENTRY TO USER');
-          console.log(updatedUserEntry);
         });
         console.log('ENTRY SAVED OK');
       }
@@ -62,21 +61,34 @@ function saveEntry(entry, user) {
   });  
 }
 
-function loadEntries(type, callback) {
-  if (type === 'cd') { // Entries for current day.
-    Entry.find({timestamp: {
-      $gte: today.toDate(),
-      $lt: tomorrow.toDate()
-    }})
-      .sort({timestamp: 'desc'})
-      .exec((error, entries) => {
-        if (error) {
-          console.error('ERROR: FAILED TO LOAD FROM DB');
-          console.error(error);
-        } else {
-          callback(entries);
-        }
-      });
+function loadEntries(user, type, callback) {
+  if (!user) {
+    console.log('ERROR! NULL USER!');
+    callback([]);
+  } else {
+    let userId = User.findOne({username: user}).exec((error, userEntry) => {
+      console.log('GETTING ENTRIES');
+      console.log(userEntry);
+      console.log(userEntry._id);
+      if (type === 'cd') { // Entries for current day.
+        Entry.find({
+          timestamp: {
+            $gte: today.toDate(),
+            $lt: tomorrow.toDate()
+          },
+          user: userEntry._id
+        })
+          .sort({timestamp: 'desc'})
+          .exec((error, entries) => {
+            if (error) {
+              console.error('ERROR: FAILED TO LOAD FROM DB');
+              console.error(error);
+            } else {
+              callback(entries);
+            }
+          });
+      }
+    });
   }
 }
 
