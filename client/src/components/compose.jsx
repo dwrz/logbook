@@ -19,6 +19,10 @@ class Compose extends React.Component {
     });
   }
 
+  logout() {
+    this.props.logout();
+  }
+
   submit() {
     let entry = {
       timestamp: new Date(),
@@ -47,6 +51,8 @@ class Compose extends React.Component {
         </form>
         <div className="text-center">
           <button onClick={this.submit.bind(this)} type="button" className="btn btn-lg btn-success">Submit</button>
+          <span> </span>
+          <button onClick={this.logout.bind(this)} type="button" className="btn btn-lg btn-danger">Logout</button>
         </div>
       </div>
     );

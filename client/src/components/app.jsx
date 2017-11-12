@@ -2,6 +2,7 @@ const serverURL = 'http://127.0.0.1:3000';
 const GET = '/api/log/entries/current/day';
 const POST = '/api/log/entry';
 const LOGIN = '/login';
+const LOGOUT = '/logout';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,6 +48,12 @@ class App extends React.Component {
     });
   }
 
+  logout() {
+    $.get(serverURL + LOGOUT, (response) => {
+      this.setState({loggedIn: false});
+    });
+  }
+
   submit (entry) {
     $.post(serverURL + POST, entry, (response) => {
       console.log(response);
@@ -61,7 +68,7 @@ class App extends React.Component {
           {!this.state.loggedIn && <Login login={this.login.bind(this)}/>}
         </div>
         <div id='compose'>
-          {this.state.loggedIn && <Compose submit={this.submit.bind(this)}/>}
+          {this.state.loggedIn && <Compose submit={this.submit.bind(this)} logout={this.logout.bind(this)}/>}
         </div>
         <div id='logview'>
           {this.state.loggedIn && <LogView entries={this.state.entries}/>}
