@@ -26,6 +26,10 @@ class Compose extends React.Component {
       description: this.state.description
     };
     this.props.submit(entry);
+    this.setState({
+      event: '',
+      description: ''
+    });
   }  
 
   render() {
